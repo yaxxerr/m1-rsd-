@@ -158,10 +158,10 @@ plt.show()
 
 ## Rôles et Contributions
 
-* **Code et développement** : GACEM Abdenour 222231640608
-* **Rédaction du rapport** : DALIL Faycal 222231658510
-* **Tests et évaluations** : ABDERRAHIM Sidali 222231402319
-* **Collecte des données** : BELDJERDI Tayeb Yasser 222231404112
+* **Code et développement** : ABDERRAHIM Sidali 222231402319  
+* **Rédaction du rapport** : BELDJERDI Tayeb Yasser 222231404112
+* **Tests et évaluations** : GACEM Abdenour 222231640608
+* **Collecte des données** : DALIL Faycal 222231658510  
 
 ---
 
