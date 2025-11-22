@@ -101,7 +101,6 @@ Pour visualiser les résultats, des graphiques ont été générés en Python av
 * **TP2 Partie 1** : Comparaison des temps d'exécution pour Naïf / Trié / Dichotomie.
 * **TP2 Partie 2** : Comparaison des temps pour MaxEtMinA et MaxEtMinB.
 
-**Exemple Python pour générer les graphiques :**
 
 ```python
 import matplotlib.pyplot as plt
