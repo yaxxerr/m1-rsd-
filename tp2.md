@@ -30,7 +30,7 @@
 
 ## Description
 
-Ce TP a pour objectif d'analyser et de comparer plusieurs algorithmes de recherche de minimum et maximum dans des tableaux d'entiers :
+Ce TP a pour objectif d'analyser et de comparer plusieurs algorithmes de recherche et determiner minimum et maximum dans des tableaux d'entiers :
 
 * **Recherche non triée (Naïf)**
 * **Recherche triée**
@@ -69,12 +69,10 @@ int sizes[] = {100000, 200000, 300000, 400000, 500000, 600000, 700000, 800000, 9
 Pour compiler le programme sous Linux :
 
 ```bash
-gcc -o tp2 tp2.c -O2
+gcc -o tp2 tp2.c 
 ./tp2
 ```
 
-* `-O2` active l’optimisation du compilateur pour des mesures plus réalistes.
-* L'exécution produit les fichiers de sortie pour les temps et comparaisons.
 
 ---
 
@@ -88,20 +86,20 @@ gcc -o tp2 tp2.c -O2
 
 ## Exemples de données
 
-### TP2 Partie 1 : Naïf / Trié / Dichotomie (best et worst cases)
+### TP2 Partie 1 :  Non-Trié / Trié / Dichotomie (best et worst cases)
 
-| N       | Naïf + (s) | Naïf − (s) | Trié + (s) | Trié − (s) | Dicho + (s) | Dicho − (s) |
-| ------- | ---------- | ---------- | ---------- | ---------- | ----------- | ----------- |
-| 100000  | 0.000000   | 0.000174   | 0.000000   | 0.000187   | 0.000001    | 0.000001    |
-| 200000  | 0.000000   | 0.000230   | 0.000000   | 0.000414   | 0.000001    | 0.000001    |
-| 400000  | 0.000000   | 0.000518   | 0.000000   | 0.000961   | 0.000001    | 0.000000    |
-| 600000  | 0.000001   | 0.000739   | 0.000000   | 0.001251   | 0.000001    | 0.000001    |
-| 800000  | 0.000000   | 0.001434   | 0.000000   | 0.002169   | 0.000000    | 0.000001    |
-| 1000000 | 0.000001   | 0.002234   | 0.000001   | 0.002718   | 0.000001    | 0.000001    |
-| 2000000 | 0.000001   | 0.002827   | 0.000001   | 0.004550   | 0.000001    | 0.000001    |
-| 4000000 | 0.000001   | 0.005915   | 0.000000   | 0.007500   | 0.000001    | 0.000001    |
-| 6000000 | 0.000000   | 0.009176   | 0.000000   | 0.010153   | 0.000001    | 0.000001    |
-| 8000000 | 0.000000   | 0.011319   | 0.000000   | 0.014508   | 0.000001    | 0.000001    |
+| N       |  Non-Trié + (s) |  Non-Trié − (s) | Trié + (s) | Trié − (s) | Dicho + (s) | Dicho − (s) |
+| ------- | --------------- | --------------- | ---------- | ---------- | ----------- | ----------- |
+| 100000  | 0.000000        | 0.000174        | 0.000000   | 0.000187   | 0.000001    | 0.000001    |
+| 200000  | 0.000000        | 0.000230        | 0.000000   | 0.000414   | 0.000001    | 0.000001    |
+| 400000  | 0.000000        | 0.000518        | 0.000000   | 0.000961   | 0.000001    | 0.000000    |
+| 600000  | 0.000001        | 0.000739        | 0.000000   | 0.001251   | 0.000001    | 0.000001    |
+| 800000  | 0.000000        | 0.001434        | 0.000000   | 0.002169   | 0.000000    | 0.000001    |
+| 1000000 | 0.000001        | 0.002234        | 0.000001   | 0.002718   | 0.000001    | 0.000001    |
+| 2000000 | 0.000001        | 0.002827        | 0.000001   | 0.004550   | 0.000001    | 0.000001    |
+| 4000000 | 0.000001        | 0.005915        | 0.000000   | 0.007500   | 0.000001    | 0.000001    |
+| 6000000 | 0.000000        | 0.009176        | 0.000000   | 0.010153   | 0.000001    | 0.000001    |
+| 8000000 | 0.000000        | 0.011319        | 0.000000   | 0.014508   | 0.000001    | 0.000001    |
 
 ### TP2 Partie 2 : MaxEtMinA vs MaxEtMinB
 
@@ -173,24 +171,54 @@ gcc -o tp2 tp2.c -O2
 
 ## Détails algorithmiques
 
-### Algorithmes Naïf
+### Algorithmes Non-Trié
 
-* Parcourt tout le tableau, retourne min et max.
-* Comparaisons : N-1 pour min et N-1 pour max.
+* Parcourt tout le tableau pour rechercher un élément donné.
+* Comparaisons : jusqu’à N dans le pire cas, 1 dans le meilleur cas.
+* Temps : proportionnel à la taille du tableau.
+* **Complexité :**
+
+  * Meilleur cas : O(1)
+  * Pire cas : O(N)
+  * Cas moyen : O(N)
 
 ### Algorithmes Triés
 
-* Exploite l'ordre croissant pour limiter les comparaisons.
+* Exploite l'ordre croissant pour limiter les comparaisons lors de la recherche.
+* Comparaisons : jusqu’à N dans le pire cas si l’élément est absent, moins si trouvé tôt.
+* Temps : proportionnel au nombre d’éléments jusqu’à l’élément recherché.
+* **Complexité :**
+
+  * Meilleur cas : O(1)
+  * Pire cas : O(N)
+  * Cas moyen : O(N/2) ≈ O(N)
 
 ### Algorithme Dichotomique
 
-* Recherche récursive en divisant le tableau pour limiter le nombre de comparaisons.
+* Recherche récursive en divisant le tableau trié par 2 à chaque étape.
+* Comparaisons : logarithmiques par rapport à N.
+* **Complexité :**
+
+  * Meilleur cas : O(1)
+  * Pire cas : O(log N)
+  * Cas moyen : O(log N)
 
 ### MaxEtMinA vs MaxEtMinB
 
-* MaxEtMinB optimise le nombre de comparaisons en traitant les paires d’éléments.
+* Détermination simultanée du maximum et du minimum.
+* MaxEtMinA : compare chaque élément individuellement.
+* MaxEtMinB : compare les éléments par paires pour réduire le nombre de comparaisons.
+* **Complexité :**
 
----
+  * MaxEtMinA :
+
+    * Comparaisons : 2N − 2
+    * Temps : O(N)
+  * MaxEtMinB :
+
+    * Comparaisons : ⌊3N/2⌋ − 2
+    * Temps : O(N)
+
 
 ## Rôles et Contributions
 
